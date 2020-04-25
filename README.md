@@ -1,6 +1,6 @@
 # Introduction 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Yoctol/bottender#contributing)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/louis70109/line-notify#contributing)
 
 This is LINE Notify client SDK.
 
@@ -59,5 +59,17 @@ print(revoke)
 # {'status': 200, 'message': 'ok'}
 ```
 
+# Contributing
+
+Fork before Clone the repository:
+```shell script
+git clone git@github.com:your-username/line-notify.git
+```
+
+Run `pytest` to make sure the tests pass:
+```shell script
+cd line-notify/
+python -m pytest tests/ 
+```
 # License
 [MIT License](https://github.com/louis70109/line-notify/blob/master/LICENSE)
