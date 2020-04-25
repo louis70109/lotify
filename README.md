@@ -1,5 +1,9 @@
 # Introduction 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Yoctol/bottender#contributing)
+
 This is LINE Notify client SDK.
+
 # Getting Started
 
 ## Get access token
@@ -54,3 +58,6 @@ revoke = client.revoke(access_token='CKmvd81Yfd9Xv38ayQdt7JN4H90oQrP6srFmKckx3sL
 print(revoke)
 # {'status': 200, 'message': 'ok'}
 ```
+
+# License
+[MIT License](https://github.com/louis70109/line-notify/blob/master/LICENSE)
