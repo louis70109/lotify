@@ -56,7 +56,15 @@ class Client:
             })
         return response.json()
 
-    def send(self, access_token, message, image_path=None, sticker_id=None, sticker_package_id=None):
+    def send(self,
+             access_token,
+             message,
+             image_path=None,
+             image_thumbnail=None,
+             image_fullsize=None,
+             sticker_id=None,
+             sticker_package_id=None,
+             notification_disabled=False):
         """Examples:
             notify.send("text test")
             notify.send("image test", image_path='./test.jpg')
@@ -67,25 +75,25 @@ class Client:
         :param image_path: string
         :param sticker_id: integer
         :param sticker_package_id: integer
+        :param notification_disabled: boolean
         :return:
         """
         files = {}
         params = {'message': message}
 
         if image_path and os.path.isfile(image_path):
-            print("@@@@@@@@@@")
-            files = {'imageFile': open(image_path, 'rb')}
-
+            files = {'imageFile': ('imageFile', open(image_path, 'rb'))}
+        if image_fullsize and image_thumbnail:
+            params.update({'imageFullsize': image_fullsize, 'imageThumbnail': image_thumbnail})
         if sticker_id and sticker_package_id:
             params.update({'stickerId': sticker_id, 'stickerPackageId': sticker_package_id})
-
-        print(files)
+        if notification_disabled:
+            params.update({'notificationDisabled': notification_disabled})
         response = self._post(
             url='{url}/api/notify'.format(url=self.api_origin),
             data=params,
             files=files,
             headers={
-                'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Bearer {token}'.format(token=access_token)
             })
         return response.json()
