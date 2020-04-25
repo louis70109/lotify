@@ -38,10 +38,10 @@ class Client:
                 'Content-Type': 'application/x-www-form-urlencoded',
             }, data={
                 'grant_type': 'authorization_code',
-                'client_id': self.client_id,
-                'client_secret': self.client_secret,
+                'code': code,
                 'redirect_uri': self.redirect_uri,
-                'code': code
+                'client_id': self.client_id,
+                'client_secret': self.client_secret
             })
         return response.json().get('access_token')
 
