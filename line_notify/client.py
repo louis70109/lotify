@@ -56,13 +56,37 @@ class Client:
             })
         return response.json()
 
-    def send(self, access_token, params):
+    def send(self, access_token, message, image_path=None, sticker_id=None, sticker_package_id=None):
+        """Examples:
+            notify.send("text test")
+            notify.send("image test", image_path='./test.jpg')
+            notify.send("sticker test", sticker_id=283, package_id=4)
+            notify.send("image & sticker test", image_path='./test.jpg', sticker_id=283, package_id=4)
+        :param access_token: string
+        :param message: string
+        :param image_path: string
+        :param sticker_id: integer
+        :param sticker_package_id: integer
+        :return:
+        """
+        files = {}
+        params = {'message': message}
+
+        if image_path and os.path.isfile(image_path):
+            print("@@@@@@@@@@")
+            files = {'imageFile': open(image_path, 'rb')}
+
+        if sticker_id and sticker_package_id:
+            params.update({'stickerId': sticker_id, 'stickerPackageId': sticker_package_id})
+
+        print(files)
         response = self._post(
             url='{url}/api/notify'.format(url=self.api_origin),
             data=params,
+            files=files,
             headers={
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': f'Bearer {access_token}'
+                'Authorization': 'Bearer {token}'.format(token=access_token)
             })
         return response.json()
 
@@ -83,11 +107,10 @@ class Client:
         self.__check_error(response)
         return response
 
-    def _post(self, url, data=None, headers=None, timeout=None):
+    def _post(self, url, data=None, headers=None, files=None, timeout=None):
         response = requests.post(
-            url, headers=headers, data=data, timeout=timeout
+            url, headers=headers, data=data, files=files, timeout=timeout
         )
-
         self.__check_error(response)
         return response
 
