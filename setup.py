@@ -16,17 +16,23 @@ with open(version_file, 'r') as fp:
     )
     version = m.groups(1)[0]
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 setup(
     name='line-notify',
-    version='0.0.1',
-    url='git@ssh.dev.azure.com/v3/hyenatek/IOT/Cloud_Common.git',
+    version=version,
+    url='https://github.com/louis70109/line-notify',
     author='NiJia Lin',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     author_email='louis70109@gmail.com',
+    keywords='line notify python ClientSDK',
     license='MIT',
     platforms='any',
     packages=find_packages(exclude=['tests']),
     install_requires=[
-        'dynaconf==2.2.2',
+        'requests==2.22.0'
     ],
+    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
     zip_safe=False
 )
