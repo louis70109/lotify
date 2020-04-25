@@ -1,9 +1,9 @@
+import json
 import unittest
-from urllib.parse import urlencode
-
 import responses
 
 from line_notify.client import Client
+from urllib.parse import urlencode
 
 
 class TestClient(unittest.TestCase):
@@ -48,3 +48,23 @@ class TestClient(unittest.TestCase):
         request = responses.calls[0].request
         self.assertEqual('POST', request.method)
         self.assertEqual('access_token_foo', result)
+
+    @responses.activate
+    def test_get_access_token(self):
+        responses.add(
+            responses.POST,
+            'https://notify-bot.line.me/oauth/token',
+            json={
+                'access_token': 'access_token_foo'
+            },
+            status=200
+        )
+
+        result = self.tested.get_access_token('foo')
+        request = responses.calls[0]
+        response = json.loads(responses.calls[0].response.content.decode())
+        self.assertEqual('POST', request.request.method)
+        self.assertEqual('access_token_foo', response.get('access_token'))
+        self.assertEqual(result, response.get('access_token'))
+
+
