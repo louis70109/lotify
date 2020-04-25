@@ -97,3 +97,23 @@ class TestClient(unittest.TestCase):
         self.assertEqual('POST', request.request.method)
         self.assertEqual(200, response.get('status'))
         self.assertEqual(result, expect_response)
+
+    @responses.activate
+    def test_revoke(self):
+        expect_response = {
+            'status': 200,
+            'message': 'ok'
+        }
+        responses.add(
+            responses.POST,
+            f'{self.api_origin}/api/revoke',
+            json=expect_response,
+            status=200
+        )
+
+        result = self.tested.revoke('access_token')
+        request = responses.calls[0]
+        response = json.loads(request.response.content.decode())
+        self.assertEqual('POST', request.request.method)
+        self.assertEqual(200, response.get('status'))
+        self.assertEqual(result, expect_response)
