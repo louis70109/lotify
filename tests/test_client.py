@@ -62,7 +62,7 @@ class TestClient(unittest.TestCase):
 
         result = self.tested.get_access_token('foo')
         request = responses.calls[0]
-        response = json.loads(responses.calls[0].response.content.decode())
+        response = json.loads(request.response.content.decode())
         self.assertEqual('POST', request.request.method)
         self.assertEqual('access_token_foo', response.get('access_token'))
         self.assertEqual(result, response.get('access_token'))
