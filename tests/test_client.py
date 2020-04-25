@@ -30,14 +30,13 @@ class TestClient(unittest.TestCase):
             '{url}/oauth/authorize?{query_string}'.format(
                 url=self.bot_origin,
                 query_string=urlencode(expected_query_string)
-            )
-        )
+            ))
 
     @responses.activate
     def test_get_access_token(self):
         responses.add(
             responses.POST,
-            'https://notify-bot.line.me/oauth/token',
+            '{url}/oauth/token'.format(url=self.bot_origin),
             json={
                 'access_token': 'access_token_foo'
             },
@@ -61,7 +60,7 @@ class TestClient(unittest.TestCase):
         }
         responses.add(
             responses.GET,
-            f'{self.api_origin}/api/status',
+            '{url}/api/status'.format(url=self.api_origin),
             json=expect_response,
             status=200
         )
@@ -81,16 +80,14 @@ class TestClient(unittest.TestCase):
         }
         responses.add(
             responses.POST,
-            f'{self.api_origin}/api/notify',
+            '{url}/api/notify'.format(url=self.api_origin),
             json=expect_response,
             status=200
         )
 
         result = self.tested.send(
             'access_token',
-            params={
-                'message': 'This is notify message'
-            }
+            params={'message': 'This is notify message'}
         )
         request = responses.calls[0]
         response = json.loads(request.response.content.decode())
@@ -106,7 +103,7 @@ class TestClient(unittest.TestCase):
         }
         responses.add(
             responses.POST,
-            f'{self.api_origin}/api/revoke',
+            '{url}/api/revoke'.format(url=self.api_origin),
             json=expect_response,
             status=200
         )
