@@ -29,43 +29,49 @@ class Client:
             'redirect_uri': self.redirect_uri,
             'state': state
         }
-        return f'{self.bot_origin}/oauth/authorize?{urlencode(query_string)}'
+        return '{url}/oauth/authorize?{query_string}'.format(url=self.bot_origin, query_string=urlencode(query_string))
 
     def get_access_token(self, code):
-            option = {
-                'url': '#{self.bot_origin}/oauth/token',
-                'header': {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                'param': {
-                    'grant_type': 'authorization_code',
-                    'client_id': self.client_id,
-                    'client_secret': self.client_secret,
-                    'redirect_uri': self.redirect_uri,
-                    'code': code
-                }
-            }
-            response = post(option)
-            json = JSON.parse(response.body)
-            json["access_token"]
-
+        response = self._post(
+            url='{url}/oauth/token'.format(url=self.bot_origin),
+            headers={
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }, data={
+                'grant_type': 'authorization_code',
+                'client_id': self.client_id,
+                'client_secret': self.client_secret,
+                'redirect_uri': self.redirect_uri,
+                'code': code
+            })
+        return response.json().get('access_token')
 
     def status(self, access_token):
-        response = self._get(url=f'{self.api_origin}/api/status', headers={
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': f'Bearer {access_token}'
-        })
+        response = self._get(
+            url='{url}/api/status'.format(url=self.api_origin),
+            headers={
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Bearer {token}'.format(token=access_token)
+            })
         return response.json()
 
-    def send(self, access_token, params) -> dict:
-        response = self._post(url=f'{self.api_origin}/api/notify', data=params, headers={
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': f'Bearer {access_token}'
-        })
+    def send(self, access_token, params):
+        response = self._post(
+            url='{url}/api/notify'.format(url=self.api_origin),
+            data=params,
+            headers={
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': f'Bearer {access_token}'
+            })
         return response.json()
 
-    def revoke(self):
-        pass
+    def revoke(self, access_token):
+        response = self._post(
+            url='{url}/api/revoke'.format(url=self.api_origin),
+            headers={
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Bearer {token}'.format(token=access_token)
+            })
+        return response.json()
 
     def _get(self, url, headers=None, timeout=None):
         response = requests.get(
