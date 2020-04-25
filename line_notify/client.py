@@ -65,14 +65,12 @@ class Client:
              sticker_id=None,
              sticker_package_id=None,
              notification_disabled=False):
-        """Examples:
-            notify.send("text test")
-            notify.send("image test", image_path='./test.jpg')
-            notify.send("sticker test", sticker_id=283, package_id=4)
-            notify.send("image & sticker test", image_path='./test.jpg', sticker_id=283, package_id=4)
+        """
         :param access_token: string
         :param message: string
         :param image_path: string
+        :param image_thumbnail: url string
+        :param image_fullsize: url string
         :param sticker_id: integer
         :param sticker_package_id: integer
         :param notification_disabled: boolean
@@ -89,6 +87,7 @@ class Client:
             params.update({'stickerId': sticker_id, 'stickerPackageId': sticker_package_id})
         if notification_disabled:
             params.update({'notificationDisabled': notification_disabled})
+
         response = self._post(
             url='{url}/api/notify'.format(url=self.api_origin),
             data=params,
