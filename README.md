@@ -5,6 +5,9 @@
 This is [LINE Notify](https://notify-bot.line.me/doc/en/) client SDK that you can build Notify bot quickly.
 
 # Usage
+You need a LINE account and create a Notify like this:
+![create-a-line-notify](https://i.imgur.com/m9q4jLO.png)
+
 ## initialize instance
 ```python
 from line_notify.client import Client
@@ -54,6 +57,7 @@ print(response)
 ![push-notify-with-sticker](https://i.imgur.com/EWpZahk.png)
 
 ### With sticker, image_path, thumbnail or fullsize image
+You can find stickerId and stickerPackageId [here](https://devdocs.line.me/files/sticker_list.pdf) 
 ```python
 # push message with sticker or image
 response = client.send(access_token='YOUR_ACCESS_TOKEN', params={
