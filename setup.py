@@ -18,15 +18,17 @@ with open(version_file, 'r') as fp:
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
+
 setup(
     name='line-notify',
     version=version,
+    description='Using Line Notify more easily',
     url='https://github.com/louis70109/line-notify',
     author='NiJia Lin',
     long_description=long_description,
     long_description_content_type="text/markdown",
     author_email='louis70109@gmail.com',
-    keywords='line notify python ClientSDK',
+    keywords='line notify python',
     license='MIT',
     platforms='any',
     packages=find_packages(exclude=['tests']),
@@ -34,5 +36,16 @@ setup(
         'requests==2.22.0'
     ],
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
-    zip_safe=False
+    zip_safe=False,
+    project_urls={
+        'Bug Reports': 'https://github.com/louis70109/line-notify/issues',
+        'Source': 'https://github.com/louis70109/line-notify',
+    },
+    classifiers=[
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8'
+    ],
 )
