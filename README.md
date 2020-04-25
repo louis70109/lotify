@@ -1,15 +1,28 @@
 # Introduction 
-redirect_uri
-client_id
-client_secret
+This is LINE Notify client SDK.
 # Getting Started
 
+## Get access token
+
+```python
+from line_notify.client import Client
+
+client = Client(client_id='YOUR_CLIENT_ID', client_secret='YOUR_CLIENT_SECRET',
+                redirect_uri='YOUR_URI')
+
+access_token = client.get_access_token(code='NOTIFY_RESPONSE_CODE')
+print(access_token)
+# N6g50DiQZk5Xh...25FoFzrs2npkU3z
+```
+
 ## Send Message
+![push notify](https://i.imgur.com/RhvwZVm.png)
+
 ```python
 from line_notify.client import Client
 
 client = Client()
-client.send(access_token='p82k...0Xr', params={
+client.send(access_token='YOUR_ACCESS_TOKEN', params={
     'message': 'This is notify message'
 })
 # {'status': 200, 'message': 'ok'}
@@ -25,17 +38,19 @@ ValueError: {'status': 400, 'message': 'message: must not be empty'}
 from line_notify.client import Client
 
 client = Client()
-status = client.status(access_token='p82k...0Xr')
+status = client.status(access_token='YOUR_ACCESS_TOKEN')
 print(status)
 # {'status': 200, 'message': 'ok', 'targetType': 'USER', 'target': 'NiJia Lin'}
 ```
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## Revoke access token
+![revoke token](https://i.imgur.com/7GAAzOi.png)
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+```python
+from line_notify.client import Client
+
+client = Client()
+revoke = client.revoke(access_token='CKmvd81Yfd9Xv38ayQdt7JN4H90oQrP6srFmKckx3sL')
+print(revoke)
+# {'status': 200, 'message': 'ok'}
+```
