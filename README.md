@@ -40,6 +40,8 @@ print(status)
 
 
 ## Send Message
+
+### Just message
 ![push-notify](https://i.imgur.com/RhvwZVm.png)
 
 ```python
@@ -51,12 +53,16 @@ print(response)
 ```
 ![push-notify-with-sticker](https://i.imgur.com/EWpZahk.png)
 
+### With sticker, image_path, thumbnail or fullsize image
 ```python
-# push message with sticker
+# push message with sticker or image
 response = client.send(access_token='YOUR_ACCESS_TOKEN', params={
     'message': 'This is notify message',
     'stickerPackageId': '1',
-    'stickerId': '1'
+    'stickerId': '1',
+    # image_path='./test_image.png',
+    # image_thumbnail='https://i.imgur.com/RhvwZVm.png',
+    # image_fullsize='https://i.imgur.com/RhvwZVm.png',
 })
 print(response)
 # {'status': 200, 'message': 'ok'}
