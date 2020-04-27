@@ -13,7 +13,7 @@
 
 You need a **LINE account** and create a Notify like this:
 
-![create-a-line-notify](https://i.imgur.com/m9q4jLO.png)
+![create-a-line-notify](https://i.imgur.com/m9q4jLOm.png)
 
 ## Install package
 
