@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 version_file = path.join(
     path.dirname(__file__),
-    'line_notify',
+    'lotify',
     '__version__.py'
 )
 with open(version_file, 'r') as fp:
@@ -16,17 +16,14 @@ with open(version_file, 'r') as fp:
     )
     version = m.groups(1)[0]
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
-
 setup(
-    name='line-notify',
+    name='lotify',
     version=version,
-    description='Using Line Notify more easily',
+    description='Using Line Notify more easily.',
     url='https://github.com/louis70109/line-notify',
     author='NiJia Lin',
     long_description=long_description,
-    long_description_content_type="text/markdown",
+    long_description_content_type="text/x-rst",
     author_email='louis70109@gmail.com',
     keywords='line notify python',
     license='MIT',
@@ -43,9 +40,6 @@ setup(
     },
     classifiers=[
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8'
+        'Programming Language :: Python :: 3.7'
     ],
 )
