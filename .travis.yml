@@ -11,13 +11,7 @@ python:
   - "3.6"
   - "3.7"
 
-matrix:
-  include:
-    - python: 3.8
-      arch: arm64
-
-install: pip install -r requirements.txt
+install: pip install tox-travis
 
 script:
-  - python -m pytest --flake8 tests/
   - tox

@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import os
 import re
 import sys
-
 from os import path
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
@@ -27,11 +26,6 @@ def _requirements():
         return [name.strip() for name in fd.readlines()]
 
 
-def _requirements_test():
-    with open('requirements-dev.txt', 'r') as fd:
-        return [name.strip() for name in fd.readlines()]
-
-
 class PyTest(TestCommand):
     def finalize_options(self):
         TestCommand.finalize_options(self)
@@ -45,6 +39,16 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 
+readme_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'README.md')
+
+try:
+    from m2r import parse_from_file
+    readme = parse_from_file(readme_file)
+except ImportError:
+    # m2r may not be installed in user environment
+    with open(readme_file) as f:
+        readme = f.read()
+
 setup(
     name='lotify',
     version=version,
@@ -54,13 +58,12 @@ setup(
     author_email='louis70109@gmail.com',
     maintainer="NiJia Lin",
     maintainer_email="louis70109@gmail.com",
-    long_description=open('README.rst').read().strip(),
+    long_description=readme,
     long_description_content_type="text/x-rst",
     keywords='line notify python lotify',
     license='MIT',
     packages=find_packages(exclude=['tests']),
     install_requires=_requirements(),
-    tests_require=_requirements_test(),
     cmdclass={'test': PyTest},
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
     project_urls={
