@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/louis70109/line-notify#contributing)
 [![Build Status](https://travis-ci.com/louis70109/lotify.svg?branch=master)](https://travis-ci.org/louis70109/lotify)
-[!p[pypi package](https://badge.fury.io/py/lotify.svg)](https://badge.fury.io/py/lotify)
+[![pypi package](https://badge.fury.io/py/lotify.svg)](https://badge.fury.io/py/lotify)
 
 **Lotify** is a [LINE Notify](https://notify-bot.line.me/doc/en/) client SDK that you can build Notify bot quickly.
 
