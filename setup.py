@@ -16,11 +16,6 @@ with open('lotify/__version__.py', 'r') as fd:
             break
 
 
-def _requirements():
-    with open('requirements.txt', 'r') as fd:
-        return [name.strip() for name in fd.readlines()]
-
-
 class PyTest(TestCommand):
     def finalize_options(self):
         TestCommand.finalize_options(self)
@@ -59,7 +54,7 @@ setup(
     keywords='line notify python lotify',
     license='MIT',
     packages=find_packages(exclude=['tests']),
-    install_requires=_requirements(),
+    install_requires=["requests>=2.7.9"],
     cmdclass={'test': PyTest},
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
     project_urls={
