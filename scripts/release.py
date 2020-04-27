@@ -15,7 +15,7 @@ def main():
 
     branch = subprocess.check_output(['git', 'branch']).strip()
 
-    if not "* master" in branch:
+    if "* master" not in branch:
         raise Exception("Must be on master branch to release")
 
     if len(subprocess.check_output(["git", "status", "-s"]).strip()) > 0:
