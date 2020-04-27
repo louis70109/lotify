@@ -1,0 +1,22 @@
+dist: xenial
+
+
+# Set the build language to Python
+language: python
+
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "3.7"
+
+install: pip install tox-travis codecov
+
+script:
+  - tox
+  - coverage run tests.py
+
+# Push the results back to codecov
+after_success:
+  - codecov
