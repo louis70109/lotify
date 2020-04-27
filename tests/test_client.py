@@ -3,7 +3,7 @@ import unittest
 try:
     from unittest.mock import patch
 except ImportError:
-    from mock import package
+    from mock import patch
 
 import responses
 
