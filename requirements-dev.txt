@@ -7,7 +7,5 @@ pytest-cov
 tox
 wheel
 twine
-sphinx>=2
-sphinx_rtd_theme
 m2r
 
