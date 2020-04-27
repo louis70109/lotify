@@ -15,7 +15,7 @@ You need a **LINE account** and create a Notify like this:
 
 ## Install package
 
-```shell script
+```
 pip install lotify
 ```
 
@@ -60,9 +60,7 @@ print(status)
 ![push-notify](https://i.imgur.com/RhvwZVm.png)
 
 ```python
-response = client.send(access_token='YOUR_ACCESS_TOKEN', params={
-    'message': 'This is notify message'
-})
+response = client.send_message(access_token='YOUR_ACCESS_TOKEN', message='This is notify message')
 print(response)
 # {'status': 200, 'message': 'ok'}
 ```
@@ -74,8 +72,11 @@ print(response)
 You can find stickerId and stickerPackageId [here](https://devdocs.line.me/files/sticker_list.pdf)
  
 ```python
-# push message with sticker or image
-response = client.send(access_token='YOUR_ACCESS_TOKEN', message='This is notify message')
+response = client.send_message_with_sticker(
+    access_token='YOUR_ACCESS_TOKEN',
+    message='This is notify message',
+    sticker_id=1,
+    sticker_package_id=1)
 print(response)
 # {'status': 200, 'message': 'ok'}
 ```
@@ -85,9 +86,6 @@ print(response)
 ![send-message-with-image-path](https://i.imgur.com/ESCrk8b.png)
 
 ```python
-from lotify.client import Client
-
-client = Client()
 image = client.send_message_with_image_path(
     access_token='YOUR_ACCESS_TOKEN',
     message='This is notify message',
@@ -102,9 +100,6 @@ print(image)
 ![send-message-with-image-url](https://i.imgur.com/0Lxatu9.png)
 
 ```python
-from lotify.client import Client
-
-client = Client()
 image = client.send_message_with_image_url(
     access_token='YOUR_ACCESS_TOKEN',
     message='This is notify message',
@@ -116,10 +111,10 @@ print(image)
 ```
 
 ## Revoke access token
+
 ![revoke-line-notify-token](https://i.imgur.com/7GAAzOi.png)
 
 ```python
-client = Client()
 revoke = client.revoke(access_token='YOUR_ACCESS_TOKEN')
 print(revoke)
 # {'status': 200, 'message': 'ok'}
@@ -128,18 +123,24 @@ print(revoke)
 # Contributing
 
 Fork before Clone the repository:
-```shell script
+
+```
 git clone git@github.com:your-username/line-notify.git
+```
+
+First install for development.
+
+```
+pip install -r requirements-dev.txt
 ```
 
 Run `pytest` to make sure the tests pass:
 
-```shell script
+```
 cd line-notify/
+python -m tox
 python -m pytest --flake8 tests/ 
 ```
-
-> If you fix `README` by markdown, you can use [Online Converter](https://pandoc.org/try/) to format to reStructuredText (RST) and run `make check` to valid README🙂.
 
 # License
 [MIT ](https://github.com/louis70109/line-notify/blob/master/LICENSE) © [NiJia Lin](https://nijialin.com/about/) & Duncan Huang
