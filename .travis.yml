@@ -1,7 +1,5 @@
 dist: xenial
 
-cache: pip
-# Set the build language to Python
 language: python
 
 python:
