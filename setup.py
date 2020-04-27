@@ -25,7 +25,7 @@ setup(
     long_description=open('README.rst').read().strip(),
     long_description_content_type="text/x-rst",
     author_email='louis70109@gmail.com',
-    keywords='line notify python',
+    keywords='line notify python lotify',
     license='MIT',
     platforms='any',
     packages=find_packages(exclude=['tests']),
