@@ -3,22 +3,17 @@
 import os
 import re
 import sys
-from os import path
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
 
-version_file = path.join(
-    path.dirname(__file__),
-    '__version__.py'
-)
-
-with open(version_file, 'r') as fp:
-    m = re.search(
-        r"^__version__ = ['\"]([^'\"]*)['\"]",
-        fp.read(),
-        re.M
-    )
-    version = m.groups(1)[0]
+__version__ = ''
+with open('lotify/__version__.py', 'r') as fd:
+    reg = re.compile(r'__version__ = [\'"]([^\'"]*)[\'"]')
+    for line in fd:
+        m = reg.match(line)
+        if m:
+            __version__ = m.group(1)
+            break
 
 
 def _requirements():
@@ -43,6 +38,7 @@ readme_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'README.m
 
 try:
     from m2r import parse_from_file
+
     readme = parse_from_file(readme_file)
 except ImportError:
     # m2r may not be installed in user environment
@@ -51,7 +47,7 @@ except ImportError:
 
 setup(
     name='lotify',
-    version=version,
+    version=__version__,
     description='Using Line Notify more easily',
     url='https://github.com/louis70109/line-notify',
     author='NiJia Lin',
