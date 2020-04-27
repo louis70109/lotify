@@ -7,6 +7,9 @@ from urllib.parse import urlencode
 
 
 class Client:
+    CLIENT_ID = os.environ.get('LINE_NOTIFY_CLIENT_ID')
+    CLIENT_SECRET = os.environ.get('LINE_NOTIFY_CLIENT_SECRET')
+    REDIRECT_URI = os.environ.get('LINE_NOTIFY_REDIRECT_URI')
 
     def __init__(self,
                  client_id=None,
@@ -16,9 +19,9 @@ class Client:
                  api_origin=None,
                  *args, **kwargs):
         super(Client, self).__init__(*args, **kwargs)
-        self.client_id = client_id or os.environ.get('LINE_NOTIFY_CLIENT_ID')
-        self.client_secret = client_secret or os.environ.get('LINE_NOTIFY_CLIENT_SECRET')
-        self.redirect_uri = redirect_uri or os.environ.get('LINE_NOTIFY_REDIRECT_URI')
+        self.client_id = client_id or self.CLIENT_ID
+        self.client_secret = client_secret or self.CLIENT_SECRET
+        self.redirect_uri = redirect_uri or self.REDIRECT_URI
 
         self.bot_origin = bot_origin or "https://notify-bot.line.me"
         self.api_origin = api_origin or "https://notify-api.line.me"
@@ -31,7 +34,8 @@ class Client:
             'redirect_uri': self.redirect_uri,
             'state': state
         }
-        return '{url}/oauth/authorize?{query_string}'.format(url=self.bot_origin, query_string=urlencode(query_string))
+        return '{url}/oauth/authorize?{query_string}'.format(
+            url=self.bot_origin, query_string=urlencode(query_string))
 
     def get_access_token(self, code):
         response = self._post(
@@ -82,9 +86,15 @@ class Client:
         if image_path and os.path.isfile(image_path):
             files = {'imageFile': ('imageFile', open(image_path, 'rb'))}
         if image_fullsize and image_thumbnail:
-            params.update({'imageFullsize': image_fullsize, 'imageThumbnail': image_thumbnail})
+            params.update({
+                'imageFullsize': image_fullsize,
+                'imageThumbnail': image_thumbnail
+            })
         if sticker_id and sticker_package_id:
-            params.update({'stickerId': sticker_id, 'stickerPackageId': sticker_package_id})
+            params.update({
+                'stickerId': sticker_id,
+                'stickerPackageId': sticker_package_id
+            })
         if notification_disabled:
             params.update({'notificationDisabled': notification_disabled})
 
