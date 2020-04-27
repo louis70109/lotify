@@ -19,10 +19,10 @@ with open(version_file, 'r') as fp:
 setup(
     name='lotify',
     version=version,
-    description='Using Line Notify more easily.',
+    description='Using Line Notify more easily',
     url='https://github.com/louis70109/line-notify',
     author='NiJia Lin',
-    long_description=long_description,
+    long_description=open('README.rst').read().strip(),
     long_description_content_type="text/x-rst",
     author_email='louis70109@gmail.com',
     keywords='line notify python',
