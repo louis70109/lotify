@@ -56,7 +56,9 @@ response = client.send(access_token='YOUR_ACCESS_TOKEN', params={
 print(response)
 # {'status': 200, 'message': 'ok'}
 ```
+
 ![push-notify-with-sticker](https://i.imgur.com/EWpZahk.png)
+
 
 ### With sticker, image_path, thumbnail or fullsize image
 You can find stickerId and stickerPackageId [here](https://devdocs.line.me/files/sticker_list.pdf) 

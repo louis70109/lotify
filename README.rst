@@ -1,5 +1,5 @@
 Lotify - LINE Notify client SDK
-======================
+===============================
 
 |License: MIT| |PRs Welcome|
 
@@ -74,7 +74,7 @@ Just message
    :alt: push-notify-with-sticker
 
    push-notify-with-sticker
-
+   
 With sticker, image\_path, thumbnail or fullsize image
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
