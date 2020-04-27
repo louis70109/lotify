@@ -5,7 +5,6 @@ from setuptools import setup, find_packages
 
 version_file = path.join(
     path.dirname(__file__),
-    'lotify',
     '__version__.py'
 )
 with open(version_file, 'r') as fp:
