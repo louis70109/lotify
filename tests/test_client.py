@@ -1,8 +1,10 @@
 import json
 import unittest
+from unittest.mock import patch
+
 import responses
 
-from line_notify.client import Client
+from lotify.client import Client
 from urllib.parse import urlencode
 
 
@@ -12,7 +14,7 @@ class TestClient(unittest.TestCase):
             client_id='QxUxF..........i51eITH',
             client_secret='fmtJS3GOVTPn4....................bFcIvJf1jo',
             redirect_uri='http://localhost:5000/notify')
-
+        self.token = '123456789abcdefghidhFeXkIQVjmuI6Oz123456789'
         self.bot_origin = "https://notify-bot.line.me"
         self.api_origin = "https://notify-api.line.me"
 
@@ -38,7 +40,7 @@ class TestClient(unittest.TestCase):
             responses.POST,
             '{url}/oauth/token'.format(url=self.bot_origin),
             json={
-                'access_token': 'access_token_foo'
+                'access_token': self.token
             },
             status=200
         )
@@ -47,7 +49,7 @@ class TestClient(unittest.TestCase):
         request = responses.calls[0]
         response = json.loads(request.response.content.decode())
         self.assertEqual('POST', request.request.method)
-        self.assertEqual('access_token_foo', response.get('access_token'))
+        self.assertEqual(self.token, response.get('access_token'))
         self.assertEqual(result, response.get('access_token'))
 
     @responses.activate
@@ -65,7 +67,7 @@ class TestClient(unittest.TestCase):
             status=200
         )
 
-        result = self.tested.status('access_token')
+        result = self.tested.status(self.token)
         request = responses.calls[0]
         response = json.loads(request.response.content.decode())
         self.assertEqual('GET', request.request.method)
@@ -73,7 +75,7 @@ class TestClient(unittest.TestCase):
         self.assertEqual(result, expect_response)
 
     @responses.activate
-    def test_send(self):
+    def test_send_message(self):
         expect_response = {
             'status': 200,
             'message': 'ok'
@@ -85,15 +87,107 @@ class TestClient(unittest.TestCase):
             status=200
         )
 
-        result = self.tested.send(
-            'access_token',
-            params={'message': 'This is notify message'}
+        result = self.tested.send_message(
+            self.token,
+            message='This is notify message'
         )
         request = responses.calls[0]
         response = json.loads(request.response.content.decode())
         self.assertEqual('POST', request.request.method)
         self.assertEqual(200, response.get('status'))
         self.assertEqual(result, expect_response)
+
+    @responses.activate
+    def test_send_message_with_sticker(self):
+        expect_response = {
+            'status': 200,
+            'message': 'ok'
+        }
+        responses.add(
+            responses.POST,
+            '{url}/api/notify'.format(url=self.api_origin),
+            json=expect_response,
+            status=200
+        )
+
+        result = self.tested.send_message_with_sticker(
+            self.token,
+            message='This is notify message',
+            sticker_package_id=1,
+            sticker_id=1
+        )
+
+        request = responses.calls[0]
+        response = json.loads(request.response.content.decode())
+        self.assertEqual('POST', request.request.method)
+        self.assertEqual(200, response.get('status'))
+        self.assertEqual(result, expect_response)
+
+    @responses.activate
+    def test_send_message_with_image_url(self):
+        expect_response = {
+            'status': 200,
+            'message': 'ok'
+        }
+        responses.add(
+            responses.POST,
+            '{url}/api/notify'.format(url=self.api_origin),
+            json=expect_response,
+            status=200
+        )
+
+        result = self.tested.send_message_with_image_url(
+            self.token,
+            message='This is notify message',
+            image_thumbnail='https://image.com/abc.png',
+            image_fullsize='https://image.com/abc.png'
+        )
+
+        request = responses.calls[0]
+        response = json.loads(request.response.content.decode())
+        self.assertEqual('POST', request.request.method)
+        self.assertEqual(200, response.get('status'))
+        self.assertEqual(result, expect_response)
+
+    @patch('lotify.client.open')
+    @patch('lotify.client.os.path.isfile')
+    @responses.activate
+    def test_send_message_with_image_path(self, mock_path, mock_file):
+        mock_path.return_value = True
+        mock_file.return_value = b'1234567890'
+        expect_response = {
+            'status': 200,
+            'message': 'ok'
+        }
+        responses.add(
+            responses.POST,
+            '{url}/api/notify'.format(url=self.api_origin),
+            json=expect_response,
+            status=200
+        )
+
+        result = self.tested.send_message_with_image_path(
+            self.token,
+            message='This is notify message',
+            image_path='./test_image.png'
+        )
+
+        request = responses.calls[0]
+        response = json.loads(request.response.content.decode())
+        self.assertEqual('POST', request.request.method)
+        self.assertEqual(200, response.get('status'))
+        self.assertEqual(result, expect_response)
+
+    def test_invalid_image_path(self):
+        try:
+            self.tested.send_message_with_image_path(
+                self.token,
+                message='This is notify message',
+                image_path='$HOME/not_exist_image.png'
+            )
+        except Exception as e:
+            self.assertTrue(
+                ValueError('Can not find $HOME/not_exist_image.png file'), e)
 
     @responses.activate
     def test_revoke(self):
