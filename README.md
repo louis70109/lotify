@@ -24,6 +24,7 @@ pip install lotify
 ## Environment variables
 
 Input those variables in your `.env` file or OS environment (using export),
+
 then you don't need to input any parameters in `initialize step`.
 
 ```
