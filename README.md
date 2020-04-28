@@ -9,7 +9,7 @@
 
 # Usage
 
-> Version suggest >= 3.7
+> Python >= 3.5
 
 You need a **LINE account** and create a Notify like this:
 
