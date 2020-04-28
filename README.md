@@ -21,7 +21,28 @@ You need a **LINE account** and create a Notify like this:
 pip install lotify
 ```
 
-## initialize instance
+## Environment variables
+
+Input those variables in your `.env` file or OS environment (using export),
+then you don't need to input any parameters in `initialize step`.
+
+```
+LINE_NOTIFY_CLIENT_ID
+LINE_NOTIFY_CLIENT_SECRET
+LINE_NOTIFY_REDIRECT_URI
+```
+
+## Initialize instance
+
+- If you already have Notify environment variables:
+
+```python
+from lotify.client import Client
+
+client = Client()
+```
+
+- else:
 
 ```python
 from lotify.client import Client
@@ -32,6 +53,8 @@ client = Client(
     redirect_uri='YOUR_URI'
 )
 ```
+
+
 
 ## Get authorizer link
 
