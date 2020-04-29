@@ -11,8 +11,6 @@
 
 # Usage
 
-> Python >= 3.5
-
 You need a **LINE account** and create a Notify like this:
 
 ![create-a-line-notify](https://i.imgur.com/m9q4jLOl.png)
