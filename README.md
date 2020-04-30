@@ -21,6 +21,8 @@ You need a **LINE account** and create a Notify like this:
 pip install lotify
 ```
 
+> You can find sample - [flask-line-notify](https://github.com/louis70109/flask-line-notify)
+
 ## Environment variables
 
 Input those variables in your `.env` file or OS environment (using export),
