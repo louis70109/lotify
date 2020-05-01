@@ -9,6 +9,9 @@
 
 **Lotify** is a [LINE Notify](https://notify-bot.line.me/doc/en/) client SDK that you can build Notify bot quickly.
 
+![](https://i.imgur.com/Rms5ZNG.png)
+
+
 # Usage
 
 You need a **LINE account** and create a Notify like this:
