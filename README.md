@@ -11,6 +11,9 @@
 
 ![](https://i.imgur.com/Rms5ZNG.png)
 
+If you programing language is not python, here can find other language version:
+- [Ruby](https://github.com/etrex/lotify)
+- [PHP](https://github.com/eric0324/lotify)
 
 # Usage
 
