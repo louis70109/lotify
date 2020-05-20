@@ -1,10 +1,14 @@
 import json
 import unittest
-from unittest.mock import patch
 import responses
 
 from lotify.client import Client
 from urllib.parse import urlencode
+
+
+class BufferedIOBase:
+    def __init__(self, name="example.png"):
+        self.name = name
 
 
 class TestClient(unittest.TestCase):
@@ -148,12 +152,8 @@ class TestClient(unittest.TestCase):
         self.assertEqual(200, response.get('status'))
         self.assertEqual(result, expect_response)
 
-    @patch('lotify.client.open')
-    @patch('lotify.client.os.path.isfile')
     @responses.activate
-    def test_send_message_with_image_path(self, mock_path, mock_file):
-        mock_path.return_value = True
-        mock_file.return_value = b'1234567890'
+    def test_send_message_with_image_file(self):
         expect_response = {
             'status': 200,
             'message': 'ok'
@@ -164,11 +164,10 @@ class TestClient(unittest.TestCase):
             json=expect_response,
             status=200
         )
-
-        result = self.tested.send_message_with_image_path(
+        result = self.tested.send_message_with_image_file(
             self.token,
             message='This is notify message',
-            image_path='./test_image.png'
+            file='This is file object'
         )
 
         request = responses.calls[0]
@@ -176,17 +175,6 @@ class TestClient(unittest.TestCase):
         self.assertEqual('POST', request.request.method)
         self.assertEqual(200, response.get('status'))
         self.assertEqual(result, expect_response)
-
-    def test_invalid_image_path(self):
-        try:
-            self.tested.send_message_with_image_path(
-                self.token,
-                message='This is notify message',
-                image_path='$HOME/not_exist_image.png'
-            )
-        except Exception as e:
-            self.assertTrue(
-                ValueError('Can not find $HOME/not_exist_image.png file'), e)
 
     @responses.activate
     def test_revoke(self):
