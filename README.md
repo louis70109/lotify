@@ -115,15 +115,15 @@ print(response)
 # {'status': 200, 'message': 'ok'}
 ```
 
-## Send message with Image path
+## Send message with Files
 
 ![send-message-with-image-path](https://i.imgur.com/ESCrk8b.png)
 
 ```python
-image = client.send_message_with_image_path(
+image = client.send_message_with_image_file(
     access_token='YOUR_ACCESS_TOKEN',
     message='This is notify message',
-    image_path='./test_image.png'
+    image_path=open('./test_image.png', 'rb')
 )
 print(image)
 # {'status': 200, 'message': 'ok'}
@@ -177,4 +177,4 @@ python -m pytest --flake8 tests/
 ```
 
 # License
-[MIT ](https://github.com/louis70109/line-notify/blob/master/LICENSE) © [NiJia Lin](https://nijialin.com/about/) & Duncan Huang
+[MIT](https://github.com/louis70109/line-notify/blob/master/LICENSE) © [NiJia Lin](https://nijialin.com/about/) & Duncan Huang
