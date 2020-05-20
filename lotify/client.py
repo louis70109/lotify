@@ -120,18 +120,13 @@ class Client:
             })
         return response.json()
 
-    def send_message_with_image_path(
+    def send_message_with_image_file(
             self,
             access_token,
             message,
-            image_path,
+            file,
             notification_disabled=False):
         params = {'message': message}
-
-        if os.path.isfile(image_path):
-            files = {'imageFile': ('imageFile', open(image_path, 'rb'))}
-        else:
-            raise ValueError('Can not find {err} file'.format(err=image_path))
 
         if notification_disabled:
             params.update({'notificationDisabled': notification_disabled})
@@ -139,7 +134,7 @@ class Client:
         response = self._post(
             url='{url}/api/notify'.format(url=self.api_origin),
             data=params,
-            files=files,
+            files={'imageFile': file},
             headers={
                 'Authorization': 'Bearer {token}'.format(token=access_token)
             })
