@@ -6,12 +6,12 @@
 [![pypi package](https://badge.fury.io/py/lotify.svg)](https://badge.fury.io/py/lotify)
 [![Python Version](https://img.shields.io/badge/Python-%3E%3D%203.5-blue.svg)](https://badge.fury.io/py/lotify)
 
-
 **Lotify** is a [LINE Notify](https://notify-bot.line.me/doc/en/) client SDK that you can build Notify bot quickly.
 
 ![](https://i.imgur.com/Rms5ZNG.png)
 
 If you programing language is not python, here can find other language version:
+
 - [Ruby](https://github.com/etrex/lotify)
 - [PHP](https://github.com/eric0324/lotify)
 
@@ -63,8 +63,6 @@ client = Client(
 )
 ```
 
-
-
 ## Get authorizer link
 
 ```python
@@ -82,12 +80,12 @@ print(access_token)
 ```
 
 ## Get Status
+
 ```python
 status = client.status(access_token='YOUR_ACCESS_TOKEN')
 print(status)
 # {'status': 200, 'message': 'ok', 'targetType': 'USER', 'target': 'NiJia Lin'}
 ```
-
 
 ## Send message
 
@@ -104,7 +102,7 @@ print(response)
 ![push-notify-with-sticker](https://i.imgur.com/EWpZahk.png)
 
 You can find stickerId and stickerPackageId [here](https://devdocs.line.me/files/sticker_list.pdf)
- 
+
 ```python
 response = client.send_message_with_sticker(
     access_token='YOUR_ACCESS_TOKEN',
@@ -123,7 +121,7 @@ print(response)
 image = client.send_message_with_image_file(
     access_token='YOUR_ACCESS_TOKEN',
     message='This is notify message',
-    image_path=open('./test_image.png', 'rb')
+    file=open('./test_image.png', 'rb')
 )
 print(image)
 # {'status': 200, 'message': 'ok'}
@@ -173,8 +171,9 @@ Run `pytest` to make sure the tests pass:
 ```
 cd line-notify/
 python -m tox
-python -m pytest --flake8 tests/ 
+python -m pytest --flake8 tests/
 ```
 
 # License
+
 [MIT](https://github.com/louis70109/line-notify/blob/master/LICENSE) © [NiJia Lin](https://nijialin.com/about/) & Duncan Huang
