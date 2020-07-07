@@ -29,29 +29,22 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 
-readme_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'README.md')
-
-try:
-    from m2r import parse_from_file
-
-    readme = parse_from_file(readme_file)
-except ImportError:
-    # m2r may not be installed in user environment
-    with open(readme_file) as f:
-        readme = f.read()
+this_directory = os.path.abspath(os.path.dirname(__file__))
+with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    readme = f.read()
 
 setup(
     name='lotify',
     version=__version__,
-    description='Using Line Notify more easily',
+    description='Using LINE Notify more easily',
     url='https://github.com/louis70109/line-notify',
     author='NiJia Lin',
     author_email='louis70109@gmail.com',
     maintainer="NiJia Lin",
     maintainer_email="louis70109@gmail.com",
     long_description=readme,
-    long_description_content_type="text/x-rst",
-    keywords='line notify python lotify',
+    long_description_content_type="text/markdown",
+    keywords='LINE notify python lotify',
     license='MIT',
     packages=find_packages(exclude=['tests']),
     install_requires=["requests>=2.0"],
