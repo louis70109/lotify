@@ -7,5 +7,4 @@ pytest-cov
 tox
 wheel
 twine
-m2r
 mock
