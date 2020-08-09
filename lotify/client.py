@@ -5,6 +5,7 @@ import os
 import requests
 from urllib.parse import urlencode
 
+import argparse
 
 class Client:
     CLIENT_ID = os.environ.get('LINE_NOTIFY_CLIENT_ID')
@@ -170,3 +171,34 @@ class Client:
             pass
         else:
             raise ValueError(response.json())
+
+def main(args):
+    client = Client()
+    if args.t:
+        access_token=args.t
+    if args.m and (not args.imgF):
+        message=args.m
+        response=client.send_message(access_token,message)
+        print(response)
+    if args.imgF and args.m:
+        message=args.m
+        image_filename=args.imgF
+        image = client.send_message_with_image_file(
+        access_token=access_token,
+        message=message,
+        file=open('./'+image_filename+'.jpg', 'rb')   #目前僅資源圖檔在同一目錄下 可以修改成也支援絕對路徑
+)
+        print(image)
+    
+    
+
+if __name__ == '__main__' :
+    parser=argparse.ArgumentParser()
+    parser.add_argument("-t", help="input yout token",type=str)  #nargs allows multiple args
+    parser.add_argument("-m", help="send text message",type=str)
+    parser.add_argument("-imgF", help="send message by File",type=str)
+    args=parser.parse_args()
+    main(args)
+
+        
+
