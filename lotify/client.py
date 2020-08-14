@@ -186,7 +186,7 @@ def main(args):
         image = client.send_message_with_image_file(
         access_token=access_token,
         message=message,
-        file=open('./'+image_filename+'.jpg', 'rb')   #目前僅資源圖檔在同一目錄下 可以修改成也支援絕對路徑
+        file=open('./'+image_filename+'.jpg', 'rb')   #TODO : support absolute PATH
 )
         print(image)
     
@@ -196,7 +196,15 @@ if __name__ == '__main__' :
     parser=argparse.ArgumentParser()
     parser.add_argument("-t", help="input yout token",type=str)  #nargs allows multiple args
     parser.add_argument("-m", help="send text message",type=str)
-    parser.add_argument("-imgF", help="send message by File",type=str)
+    parser.add_argument("-imgF", help="send message by File",type=str) 
+
+    '''
+    TODO:
+    --image-URL
+    --message-sticker
+    --get-Token
+
+    '''
     args=parser.parse_args()
     main(args)
 
