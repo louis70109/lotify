@@ -176,4 +176,4 @@ python -m pytest --flake8 tests/
 
 # 授權條款
 
-[MIT](https://github.com/louis70109/line-notify/blob/master/LICENSE) © [NiJia Lin](https://nijialin.com/about/) & [Duncan Huang](https://github.com/ragnaok)
+[MIT](https://github.com/louis70109/line-notify/blob/master/LICENSE) © [NiJia Lin](https://nijialin.com/about/) & [Duncan Huang](https://github.com/ragnaok) & [Samuel CA-Lee](https://github.com/CA-Lee)
