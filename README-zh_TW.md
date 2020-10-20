@@ -6,6 +6,8 @@
 [![pypi package](https://badge.fury.io/py/lotify.svg)](https://badge.fury.io/py/lotify)
 [![Python Version](https://img.shields.io/badge/Python-%3E%3D%203.5-blue.svg)](https://badge.fury.io/py/lotify)
 
+[English version](https://github.com/louis70109/lotify/blob/master/README.md)
+
 **Lotify** 是個讓你可以快速建立 Notify 機器人的 [LINE Notify](https://notify-bot.line.me/doc/en/) 客戶端 SDK。
 
 ![](https://i.imgur.com/Rms5ZNG.png)
