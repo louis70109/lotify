@@ -6,6 +6,8 @@
 [![pypi package](https://badge.fury.io/py/lotify.svg)](https://badge.fury.io/py/lotify)
 [![Python Version](https://img.shields.io/badge/Python-%3E%3D%203.5-blue.svg)](https://badge.fury.io/py/lotify)
 
+[Chinese traditional version](https://github.com/louis70109/lotify/blob/master/README-zh_TW.md)
+
 **Lotify** is a [LINE Notify](https://notify-bot.line.me/doc/en/) client SDK that you can build Notify bot quickly.
 
 ![](https://i.imgur.com/Rms5ZNG.png)
