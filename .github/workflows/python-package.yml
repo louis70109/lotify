@@ -5,7 +5,7 @@ name: Python package
 
 on:
   push:
-    branches: [test-action]
+    branches: [master]
   pull_request:
     branches: [master]
 
@@ -35,6 +35,4 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Test with pytest
         run: |
-          pwd
-          ls -al
           tox
