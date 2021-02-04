@@ -13,8 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        max-parallel: 2
         python-version: [3.7, 3.8, 3.9]
 
     steps:
