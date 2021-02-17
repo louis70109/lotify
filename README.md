@@ -103,7 +103,7 @@ print(response)
 
 ![push-notify-with-sticker](https://i.imgur.com/EWpZahk.png)
 
-You can find stickerId and stickerPackageId [here](https://devdocs.line.me/files/sticker_list.pdf)
+#### You can find stickerId and stickerPackageId [here](https://developers.line.biz/media/messaging-api/sticker_list.pdf).
 
 ```python
 response = client.send_message_with_sticker(
