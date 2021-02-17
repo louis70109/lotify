@@ -29,3 +29,8 @@ jobs:
       run: |
         python setup.py sdist bdist_wheel
         twine upload dist/*
+    - name: LINE Notify Message
+      uses: louis70109/line-notify-action@master
+      with:
+        token: ${{ secrets.LINE_NOTIFY_TOKEN }}
+        message: 'lotify upload to Pypi success.'
