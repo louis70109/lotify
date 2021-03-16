@@ -26,6 +26,11 @@ class Client:
         self.bot_origin = bot_origin or "https://notify-bot.line.me"
         self.api_origin = api_origin or "https://notify-api.line.me"
 
+    def __repr__(self):
+        return f"<Lotify client_id={self.client_id}, client_secret={self.client_secret}, " \
+               f"redirect_uri={self.redirect_uri}, bot_origin={self.bot_origin}, " \
+               f"api_origin={self.api_origin}>"
+
     def get_auth_link(self, state):
         query_string = {
             'scope': 'notify',
