@@ -66,4 +66,8 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Topic :: Software Development"
     ],
+    entry_points='''
+        [console_scripts]
+        lotify=lotifyCli:send_message
+    '''
 )

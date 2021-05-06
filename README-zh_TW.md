@@ -152,6 +152,15 @@ print(revoke)
 # {'status': 200, 'message': 'ok'}
 ```
 
+## 在命令列中使用
+```commandline
+lotify --help
+-t, --access_token TEXT  access token  [required]
+-m, --message TEXT       message to send  [required]
+-u, --image-url TEXT     image url to send
+-f, --image-file TEXT    image file path to send
+```
+
 # 貢獻指南
 
 請先 Fork 再 Clone：
