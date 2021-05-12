@@ -185,6 +185,27 @@ python -m tox
 python -m pytest --flake8 tests/
 ```
 
+# Command Line Debug
+If you met following logs.
+
+```shell
+Traceback (most recent call last):
+  File "/usr/local/bin/lotify", line 33, in <module>
+    sys.exit(load_entry_point('lotify==2.3.2', 'console_scripts', 'lotify')())
+  File "/usr/local/bin/lotify", line 25, in importlib_load_entry_point
+    return next(matches).load()
+StopIteration
+```
+
+Uninstall old package and reinstall.
+
+```shell
+pip uninstall lotify
+pip install lotify
+```
+
+Then `StopIteration` would go away.
+
 # License
 
 [MIT](https://github.com/louis70109/line-notify/blob/master/LICENSE) © [NiJia Lin](https://nijialin.com/about/) & [Duncan Huang](https://github.com/ragnaok)
