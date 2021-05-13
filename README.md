@@ -31,6 +31,12 @@ pip install lotify
 
 > Here has example - [flask-line-notify](https://github.com/louis70109/flask-line-notify)
 
+## Command line
+
+```
+lotify -t YOUR_TOKEN -m 'this is example'
+```
+
 ## Environment variables
 
 Input those variables in your `.env` file or OS environment (or using `export`).
