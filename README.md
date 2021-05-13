@@ -8,18 +8,18 @@
 
 📖 [Chinese traditional version](https://github.com/louis70109/lotify/blob/master/README-zh_TW.md)
 
-**Lotify** is a [LINE Notify](https://notify-bot.line.me/doc/en/) client SDK that you can build Notify bot quickly.
+**Lotify** is a [LINE Notify](https://notify-bot.line.me/doc/en/) client SDK that you can build notification bot quickly.
 
 ![](https://i.imgur.com/Rms5ZNG.png)
 
-If you programing language is not python, here can find other language version:
+If your programing language is not python, here had another language:
 
 - [Ruby](https://github.com/etrex/lotify)
 - [PHP](https://github.com/eric0324/lotify)
 
 # Usage
 
-You need a **LINE account** and create a Notify like this:
+First, you need a **LINE account** and create a LINE Notify channel as following:
 
 ![create-a-line-notify](https://i.imgur.com/m9q4jLOl.png)
 
@@ -29,13 +29,13 @@ You need a **LINE account** and create a Notify like this:
 pip install lotify
 ```
 
-> You can find sample - [flask-line-notify](https://github.com/louis70109/flask-line-notify)
+> Here has example - [flask-line-notify](https://github.com/louis70109/flask-line-notify)
 
 ## Environment variables
 
-Input those variables in your `.env` file or OS environment (using export),
+Input those variables in your `.env` file or OS environment (or using `export`).
 
-then you don't need to input any parameters in `initialize step`.
+Then you don't need to input any parameters in `initialize step`.
 
 ```
 LINE_NOTIFY_CLIENT_ID
