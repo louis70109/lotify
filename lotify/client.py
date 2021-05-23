@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import os
 
 import requests
@@ -154,23 +153,33 @@ class Client:
             })
         return response.json()
 
-    def _get(self, url, headers=None, timeout=None):
-        response = requests.get(
-            url, headers=headers, timeout=timeout
-        )
-
-        self.__check_error(response)
-        return response
+    def _get(self, url, headers=None, timeout=1):
+        try:
+            response = requests.get(url, headers=headers, timeout=timeout)
+            self.__check_http_response_status(response)
+            return response
+        except requests.exceptions.Timeout:
+            raise RuntimeError(
+                'Request time {timeout} timeout. Please check internet.'.format(timeout=timeout)
+            )
+        except requests.exceptions.TooManyRedirects:
+            raise RuntimeError('URL {url} was bad, please try a different one.'.format(url=url))
 
     def _post(self, url, data=None, headers=None, files=None, timeout=None):
-        response = requests.post(
-            url, headers=headers, data=data, files=files, timeout=timeout
-        )
-        self.__check_error(response)
-        return response
+        try:
+            response = requests.get(
+                url, headers=headers, data=data, files=files, timeout=timeout)
+            self.__check_http_response_status(response)
+            return response
+        except requests.exceptions.Timeout:
+            raise RuntimeError(
+                'Request time {timeout} timeout. Please check internet.'.format(timeout=timeout)
+            )
+        except requests.exceptions.TooManyRedirects:
+            raise RuntimeError('URL {url} was bad, please try a different one.'.format(url=url))
 
     @staticmethod
-    def __check_error(response):
+    def __check_http_response_status(response):
         if 200 <= response.status_code < 300:
             pass
         else:
