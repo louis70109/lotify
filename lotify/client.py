@@ -167,7 +167,7 @@ class Client:
 
     def _post(self, url, data=None, headers=None, files=None, timeout=None):
         try:
-            response = requests.get(
+            response = requests.post(
                 url, headers=headers, data=data, files=files, timeout=timeout)
             self.__check_http_response_status(response)
             return response
