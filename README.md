@@ -5,7 +5,6 @@
 [![Build Status](https://travis-ci.com/louis70109/lotify.svg?branch=master)](https://travis-ci.org/louis70109/lotify)
 [![pypi package](https://badge.fury.io/py/lotify.svg)](https://badge.fury.io/py/lotify)
 [![Python Version](https://img.shields.io/badge/Python-%3E%3D%203.5-blue.svg)](https://badge.fury.io/py/lotify)
-[![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://GitHub.com/Naereen/StrapDown.js/releases/)
 [![GitHub latest commit](https://badgen.net/github/last-commit/Naereen/Strapdown.js)](https://GitHub.com/Naereen/StrapDown.js/commit/)
 [![GitHub stars](https://img.shields.io/github/stars/Naereen/StrapDown.js.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/Naereen/StrapDown.js/stargazers/)
 
