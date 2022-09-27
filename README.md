@@ -214,6 +214,12 @@ pip install lotify
 
 Then `StopIteration` would go away.
 
+# Contributors
+
+<a href="https://github.com/louis70109/lotify/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=louis70109/lotify" />
+</a>
+
 # License
 
 [MIT](https://github.com/louis70109/line-notify/blob/master/LICENSE) © [NiJia Lin](https://nijialin.com/about/) & [Duncan Huang](https://github.com/ragnaok)
