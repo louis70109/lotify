@@ -29,7 +29,7 @@ class Client:
                f"redirect_uri={self.redirect_uri}, bot_origin={self.bot_origin}, " \
                f"api_origin={self.api_origin}>"
 
-    def get_auth_link(self, state):
+    def get_auth_link(self, state,form_post=False):
         query_string = {
             'scope': 'notify',
             'response_type': 'code',
@@ -37,6 +37,7 @@ class Client:
             'redirect_uri': self.redirect_uri,
             'state': state
         }
+        if form_post:query_string.update({'response_mode':'form_post'})
         return '{url}/oauth/authorize?{query_string}'.format(
             url=self.bot_origin, query_string=urlencode(query_string))
 
