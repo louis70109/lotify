@@ -17,7 +17,6 @@ class Client:
                  bot_origin=None,
                  api_origin=None,
                  *args, **kwargs):
-        super(Client, self).__init__(*args, **kwargs)
         self.client_id = client_id or self.CLIENT_ID
         self.client_secret = client_secret or self.CLIENT_SECRET
         self.redirect_uri = redirect_uri or self.REDIRECT_URI
@@ -86,8 +85,8 @@ class Client:
             notification_disabled=False):
         params = {
             'message': message,
-            'stickerId': sticker_id,
-            'stickerPackageId': sticker_package_id
+            'stickerPackageId': sticker_package_id,
+            'stickerId': sticker_id
         }
         if notification_disabled:
             params.update({'notificationDisabled': notification_disabled})
@@ -96,7 +95,8 @@ class Client:
             url='{url}/api/notify'.format(url=self.api_origin),
             data=params,
             headers={
-                'Authorization': 'Bearer {token}'.format(token=access_token)
+                'Authorization': 'Bearer {token}'.format(token=access_token),
+                'Content-Type': 'application/x-www-form-urlencoded'
             })
         return response.json()
 
